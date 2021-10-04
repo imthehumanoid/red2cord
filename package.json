@@ -1,0 +1,31 @@
+{
+  "devDependencies": {
+    "node": "^16.6.1",
+    "discord.js": "^13.1.0",
+    "express": "^4.17.1",
+    "node-fetch": "^3.0.0",
+    "node-reddit-js": "^0.0.11",
+    "reddit": "^1.2.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "name": "red2cord",
+  "version": "0.0.1",
+  "description": "Uses discord.js webhooks and node-reddit-js to make reddit posts.",
+  "main": "red2cord.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imthehumanoid/red2cord.js.git"
+  },
+  "keywords": [
+    "reddit",
+    "discord"
+  ],
+  "author": "imthehumanoid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imthehumanoid/red2cord.js/issues"
+  },
+  "homepage": "https://github.com/imthehumanoid/red2cord.js#readme"
+}
