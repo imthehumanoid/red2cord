@@ -1,12 +1,13 @@
 const Reddit = require('node-reddit-js');
 const Discord = require('discord.js');
 
-function Poster(config) {
+class Poster {
+  constructor(config) {
   if (config!==undefined) {
-    if (config.reddit_client!==undefined) {
-      this.client = config.client;
+    if (config.redditClient!==undefined) {
+      this.redditClient = config.redditClient;
     } else {
-      console.info('Error: "reddit_client" is a required argument.')
+      console.info('Error: "redditClient" is a required argument.')
     }
     if (config.webhook!==undefined) {
       this.webhook = config.webhook;
@@ -35,19 +36,9 @@ function Poster(config) {
   } else {
     console.info('Error: no arguments have been given.');
   }
-};
+ }
 
-Poster.prototype.addSubreddits = function(subs) {
-  this.subreddits = subs;
-};
-Poster.prototype.setRedditClient = function(client) {
-  this.redditClient = client;
-};
-Poster.prototype.setWebhook = function(wh) {
-  this.webhook = wh;
-};
-
-Poster.prototype.post = function() {
+post() {
   let rand = Math.floor(Math.random() * this.subreddits.length);
   let range = Math.floor(Math.random() * this.range);
   let subreddit = this.subreddits[rand];
@@ -69,10 +60,10 @@ Poster.prototype.post = function() {
      avatar: sub.community_icon
    })
    console.log(`Sent a post from ${info.data.display_name_prefixed}`)
- })
-})
-};
+   })
+  })
+ }
 
-Poster.prototype = Object.create(Poster.prototype);
+}
 
-Poster.prototype.constructor = Poster;
+module.exports.Poster = Poster;
