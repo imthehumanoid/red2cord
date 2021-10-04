@@ -41,5 +41,5 @@ Make the red2cord poster.
   
   Make a post.
   ```js
-  poster.post()
+  poster.post();
   ```
