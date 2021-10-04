@@ -1,4 +1,4 @@
-# red2cord.js
+# red2cord
 
 **red2cord** uses [node-reddit-js](https://www.npmjs.com/package/node-reddit-js) and [discord.js](https://www.npmjs.com/package/discord.js) webhooks to bring posts from reddit to discord!
 
