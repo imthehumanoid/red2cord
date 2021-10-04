@@ -42,7 +42,7 @@ Make the red2cord poster.
    range: 10
   });
    /*
-  range" is not required and defaults to 10.
+  "range" is not required and defaults to 10.
   It picks how many Reddit posts ago you can pick randomly from.
   
   "subreddits" is an array of subreddits that it will randomly choose from.
