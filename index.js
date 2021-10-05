@@ -48,7 +48,7 @@ post() {
   let embed = new Discord.MessageEmbed()
    .setAuthor(`u/${newest.author}`, null, `https://www.reddit.com/u/${newest.author}`)
    .setTitle(newest.title)
-   .setDescription(`${newest.selftext.slice(0, 1997}...`)
+   .setDescription(`${newest.selftext.slice(0, 1997)}...`)
    .setURL(`https://www.reddit.com${newest.permalink}`)
    .setFooter(`⇧ ${newest.ups} | 🗨 ${newest.num_comments}`)
    .setImage(newest.url)
