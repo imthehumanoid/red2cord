@@ -11,7 +11,7 @@
     "start": "node index.js"
   },
   "name": "red2cord",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Uses discord.js webhooks and node-reddit-js to post Reddit posts onto Discord.",
   "main": "index.js",
   "repository": {
