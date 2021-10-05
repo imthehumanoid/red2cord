@@ -44,12 +44,13 @@ post() {
   let subreddit = this.subreddits[rand];
   this.redditClient.reddit.r(subreddit, 'new.json').get().then(async post => {
   let newest = await post.data.children[range].data
+  if (newest.selftext.length>2000) {
   let embed = new Discord.MessageEmbed()
    .setAuthor(`u/${newest.author}`, null, `https://www.reddit.com/u/${newest.author}`)
    .setTitle(newest.title)
-   .setDescription(`${newest.selftext}`)
+   .setDescription(`${newest.selftext.slice(0, 1997}...`)
    .setURL(`https://www.reddit.com${newest.permalink}`)
-   .setFooter(`⇧ ${newest.ups} | ⇩ ${newest.downs} | 🗨 ${newest.num_comments}`)
+   .setFooter(`⇧ ${newest.ups} | 🗨 ${newest.num_comments}`)
    .setImage(newest.url)
    .setColor('WHITE')
  this.redditClient.reddit.r(subreddit, 'about.json').get().then(async info => {
@@ -61,6 +62,25 @@ post() {
    })
    console.log(`Sent a post from ${info.data.display_name_prefixed}`)
    })
+  } else {
+  let embed = new Discord.MessageEmbed()
+   .setAuthor(`u/${newest.author}`, null, `https://www.reddit.com/u/${newest.author}`)
+   .setTitle(newest.title)
+   .setDescription(`${newest.selftext`)
+   .setURL(`https://www.reddit.com${newest.permalink}`)
+   .setFooter(`⇧ ${newest.ups} | 🗨 ${newest.num_comments}`)
+   .setImage(newest.url)
+   .setColor('WHITE')
+ this.redditClient.reddit.r(subreddit, 'about.json').get().then(async info => {
+   let sub = await info.data;
+   this.webhook.send({
+     embeds: [embed],
+     username: sub.display_name_prefixed,
+     avatar: sub.community_icon
+   })
+   console.log(`Sent a post from ${info.data.display_name_prefixed}`)
+   }) 
+  }
   })
  }
 
