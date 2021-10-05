@@ -45,6 +45,11 @@ post() {
   this.redditClient.reddit.r(subreddit, 'new.json').get().then(async post => {
   let newest = await post.data.children[range].data
   if (newest.selftext.length>2000) {
+    newest.selftext = newest.selftext.slice(0, 1997);
+  }
+  if (newest.title.length>256) {
+    newest.title = `${newest.title.slice(0, 253)}...`;
+  }
   let embed = new Discord.MessageEmbed()
    .setAuthor(`u/${newest.author}`, null, `https://www.reddit.com/u/${newest.author}`)
    .setTitle(newest.title)
@@ -62,24 +67,6 @@ post() {
    })
    console.log(`Sent a post from ${info.data.display_name_prefixed}`)
    })
-  } else {
-  let embed = new Discord.MessageEmbed()
-   .setAuthor(`u/${newest.author}`, null, `https://www.reddit.com/u/${newest.author}`)
-   .setTitle(newest.title)
-   .setDescription(`${newest.selftext}`)
-   .setURL(`https://www.reddit.com${newest.permalink}`)
-   .setFooter(`⇧ ${newest.ups} | 🗨 ${newest.num_comments}`)
-   .setImage(newest.url)
-   .setColor('WHITE')
- this.redditClient.reddit.r(subreddit, 'about.json').get().then(async info => {
-   let sub = await info.data;
-   this.webhook.send({
-     embeds: [embed],
-     username: sub.display_name_prefixed,
-     avatar: sub.community_icon
-   })
-   console.log(`Sent a post from ${info.data.display_name_prefixed}`)
-   }) 
   }
   })
  }
