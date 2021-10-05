@@ -50,6 +50,9 @@ post() {
   if (newest.title.length>256) {
     newest.title = `${newest.title.slice(0, 253)}...`;
   }
+  if (!newest.url.startsWith('http')) {
+    newest.url = null;
+  }
   let embed = new Discord.MessageEmbed()
    .setAuthor(`u/${newest.author}`, null, `https://www.reddit.com/u/${newest.author}`)
    .setTitle(newest.title)
